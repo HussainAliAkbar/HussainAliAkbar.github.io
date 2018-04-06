@@ -1,55 +1,19 @@
+---
+layout: main
+---
+{% for post in paginator.posts %}
+<article class="post">
+  {% if post.img %}
+    <a class="post-thumbnail" style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : post.img}})" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% else %}
+  {% endif %}
+  <div class="post-content">
+    <h2 class="post-title"><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h2>
+    <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
+    <span class="post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+    <span class="post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words | plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>
+  </div>
+</article>
+{% endfor %}
 
-<!DOCTYPE HTML>
-<html lang="en" >
-<head>
-<meta charset="utf-8">
-<title>Hussain Ali Akbar &middot; Karachi, Pakistan</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Software Developer at 10 Pearls, Part time Book Reader."/>
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Hussain Ali Akbar &middot; Karachi, Pakistan" />
-<meta property="og:description" content="Software Developer at 10 Pearls, Part time Book Reader." />
-<meta property="og:url" content="http://www.HussainAliAkbar.github.io/" />
-<meta property="og:site_name" content="Hussain Ali Akbar" />
-<meta property="og:image" content="hussain.png" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:description" content="Software Developer at 10 Pearls, Part time Book Reader." />
-<meta name="twitter:title" content="Hussain Ali Akbar &middot; Karachi, Pakistan" />
-<meta name="twitter:image" content="hussain.png" />
-<link rel="stylesheet" type="text/css" href="style.min.css" media="all" />
-
-</head>
-
-<body>
-	
-	<div class="wrapper">
-		
-		<h1>
-			<strong>Hussain Ali Akbar</strong><span class="hide"> &middot; </span>
-			<small><a href="https://en.wikipedia.org/wiki/Karachi" target="_blank">Karachi</a>,&nbsp;Pakistan</small>
-		</h1>
-		
-		<ul class="numchuck_skills">
-			<li>Developer</li>
-			<li>Table Tennis Enthusiast</li>
-			<li>Season Watcher</li>
-			<li>Book Reader</li>
-		</ul>
-		
-		<h2>
-			Software&nbsp;Developer&nbsp;at&nbsp;<a href= "http://10pearls.com/">10 Pearls</a>
-			<br>
-			<br>
-			<a href="https://github.com/hussainakbar10p"><img src= "github-logo.png" width="35px" height="35px"></a>&nbsp;&middot;
-			<a href="https://pk.linkedin.com/in/hussain-ali-akbar-14937abb"><img src= "linkedin-logo.png" width="35px" height="35px"></a>&nbsp;&middot;
-			<a href="http://stackoverflow.com/users/5173033/hussain-ali-akbar"><img src= "stackoverflow-logo.png" width="35px" height="35px"></a>&nbsp;&middot;
-			<a href="https://github.com/hussainaliakbar"><img src= "github-logo.png" width="35px" height="35px"></a>&nbsp;
-		</h2>	
-		<footer>
-			<p><strong><a href="mailto:hussain94aa@gmail.com">Catch up with me!</a> </strong></p>
-		</footer>
-		
-	</div>
-
-</body>
-</html>
+{% include pagination.html %}

@@ -1,0 +1,17 @@
+---
+layout: post
+title: Hi There!
+date: 2018-04-06 11:50:00 +0500
+description: An Introduction # Add post description (optional)
+img: # Add image post (optional)
+tags: [introduction] # add tag
+---
+Hi There! My name is Hussain and I work as a Software Developer at 10 Pearls in Karachi, Pakistan. In addition to always striving to work on cutting edge technologies and solving complex problems, i am also an avid reader and like to keep up with whatever's happening in the Tech world.
+
+Even though i have worked on a variety of Applications in my short tenure as a professional Software Developer including both Desktop and Web Applications, I recently got assigned to a project where our main aim was to make the product FIPS (Federal Information Processing Standards) and CC (Common Criteria) Compliant. This was an entire new domain for me as this project revovled around Software Security, something that i did not take into account previously to be very honest. 
+
+However, working on this project made me realize the importance of security and how we as Developers leave basic loopholes in our softwares in order to avoid a small increase in development effort.
+
+Not only that, i also learned that information and help on these topics was either very limited or did not exist at all and we had to find solutions to alot of problems ourselves after hours and sometimes even days of head scratching (though that did result in an excellent learning experience overall). 
+
+And this is where this blog comes in. Here, I'll be sharing all the information that i got to learn with little to no help available online. So stay tuned!

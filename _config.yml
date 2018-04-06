@@ -1,0 +1,37 @@
+title: Hussain Ali Akbar
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+permalink: ':title/'
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
+
+# Author Settings
+author: Hussain Ali Akbar # add your name
+author-img: hussain-ali-akbar.jpg # add your photo
+about-author: I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.
+social-twitter: # add your Twitter handle
+social-facebook: # add your Facebook handle
+social-github: github.com/hussainAliAkbar # add your Github handle
+social-linkedin: # add your Linkedin handle
+social-email: hussain94aa@gmail.com # add your Email address
+
+# Disqus
+discus-identifier: # add your discus identifier
+
+# Tracker
+analytics: # Google Analytics
+
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+
+paginate: 10
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
