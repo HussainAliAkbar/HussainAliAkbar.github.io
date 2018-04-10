@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Generating and using GPG Keys - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="Generating and using GPG Keys" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="A brief introduction to GPG Keys, how to generate them and what are its practical uses" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/generating-and-using-GPG-keys/" property="og:url">
+  
+  
+    <meta content="2018-04-10T12:30:00+05:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="gpg" property="article:tag">
+    
+    <meta content="keys" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Generating and using GPG Keys">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/generating-and-using-GPG-keys/">
+  
+  
+    <meta name="twitter:description" content="A brief introduction to GPG Keys, how to generate them and what are its practical uses">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg">
+  
+
+	<meta name="description" content="A brief introduction to GPG Keys, how to generate them and what are its practical uses">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Generating and using GPG Keys</h1>
+        <div class="page-date"><span>2018, Apr 10&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>GPG is a very interesting utility based upon the public private key cryptographic system that lets you encrypt and decrypt files with a digital signature. If you dont know what that is, <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">then read this</a>.</p>
+
+<p>This utility lets us tackle a variety of use cases. For example, in our project, we used GPG Keys to sign our debian and rpm packages. How that is done exactly will be covered in a later post. It can also be used to sign git commits and tags ( <a href="https://help.github.com/articles/signing-commits-with-gpg/">read this</a> ) so that anyone looking at your work can verify that the work has indeed been done by you and nobody else.</p>
+
+<p>In this post, we will cover the basics of GPG keys such as generating and exporting them and at the end, we’ll look into a very simple use case for GPG keys.</p>
+
+<h1 id="generating-gpg-keys">Generating GPG Keys</h1>
+<p>Type <strong>gpg –gen-key</strong> in the terminal to start</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hussain@LTP-DEV-HUSSAINAKB ~ <span class="nv">$ </span>gpg <span class="nt">--gen-key</span>
+gpg <span class="o">(</span>GnuPG<span class="o">)</span> 1.4.20<span class="p">;</span> Copyright <span class="o">(</span>C<span class="o">)</span> 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+</code></pre></div></div>
+<p>Next, it will ask you to select the kind of key you want. For the purpose of this tutorial, i selected RSA.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please <span class="k">select </span>what kind of key you want:
+   <span class="o">(</span>1<span class="o">)</span> RSA and RSA <span class="o">(</span>default<span class="o">)</span>
+   <span class="o">(</span>2<span class="o">)</span> DSA and Elgamal
+   <span class="o">(</span>3<span class="o">)</span> DSA <span class="o">(</span>sign only<span class="o">)</span>
+   <span class="o">(</span>4<span class="o">)</span> RSA <span class="o">(</span>sign only<span class="o">)</span>
+Your selection? 1
+</code></pre></div></div>
+
+<p>Next, it’ll ask you for a keysize. The bigger the keysize, the stronger it will be against brute force attacks. However, a bigger size will result in slower encryption and decryption.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 2048
+Requested keysize is 2048 bits
+</code></pre></div></div>
+<p>Next, it will ask you the time duration for the key expiry.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 0
+Key does not expire at all
+</code></pre></div></div>
+<p>Next, it will ask you for a name and email address. These two entries are important as they will be used while managing keys and using the keys for signing files.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    "Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;"
+
+Real name: Hussain Ali Akbar
+Email address: foo@bar.com
+Comment: test gpg key
+You selected this USER-ID:
+    "Hussain Ali Akbar (test gpg key) &lt;foo@bar.com&gt;"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+
+</code></pre></div></div>
+<p>Finally, it will ask for a passphrase. This is again an important field as you will need to enter this passphrase during the encryption/decryption process.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You need a Passphrase to protect your secret key.
+</code></pre></div></div>
+
+<p>Once you provide all of this information, the utility will take some time in generating random bytes in order the generate the keys. Once the process is complete, you will see something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+....+++++
++++++
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need 66 more bytes)
+..+++++
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need 128 more bytes)
+.+++++
+gpg: key E5124174 marked as ultimately trusted
+public and secret key created and signed.
+
+gpg: checking the trustdb
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+pub   2048R/E5124174 2018-04-10
+      Key fingerprint = B162 6587 7A80 C8FB 4032  7C4A 681E FD1D E512 4174
+uid                  Hussain Ali Akbar (test gpg key) &lt;foo@bar.com&gt;
+sub   2048R/A7F42694 2018-04-10
+</code></pre></div></div>
+
+<h1 id="listing-the-gpg-keys">Listing the GPG Keys</h1>
+<p>Listing the GPG Keys can be done by this.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hussain@LTP-DEV-HUSSAINAKB ~ $ gpg --list-keys
+/home/hussain/.gnupg/pubring.gpg
+--------------------------------
+pub   2048R/E5124174 2018-04-10
+uid                  Hussain Ali Akbar (test gpg key) &lt;foo@bar.com&gt;
+sub   2048R/A7F42694 2018-04-10
+</code></pre></div></div>
+
+<h1 id="exporting-the-gpg-public-keys">Exporting the GPG Public keys</h1>
+<p>Exporting the public key is again very simple. The email address that was provided while creating the GPG Key will be used here.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hussain@LTP-DEV-HUSSAINAKB ~/Desktop $ gpg --armor --export foo@bar.com
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1
+
+mQENBFrMYFkBCAC3opeWYJs3UORTLsrCpKZUSI+HCVIhL121se/CIU5TgEGZwHea
+....
+....
+ycKvAahACcHQXmBdFjYpZ6HvwLVJ1sVqqK1cw2mstkTpRPrhHXyG+lljSAQm
+=ksI7
+-----END PGP PUBLIC KEY BLOCK-----
+hussain@LTP-DEV-HUSSAINAKB ~/Desktop $ 
+</code></pre></div></div>
+
+<p>If you want to save the key in a file, just redirect the output to a file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg --armor --export foo@bar.com &gt; key.gpg
+</code></pre></div></div>
+<p>Once the key file is created, it can sent to the users who will use it to verify your work and/or files.</p>
+
+<h1 id="importing-gpg-public-keys">Importing GPG Public keys</h1>
+<p>The public keys can be imported through the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg --import key.gpg
+</code></pre></div></div>
+<p>Once this is done, the gpg public key can be used to verify other people’s work.</p>
+
+<p>In the next post, we’ll see how dpkg-sig can be used to sign debian packages!</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Generating and using GPG Keys&url=http://localhost:4000/generating-and-using-GPG-keys/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/generating-and-using-GPG-keys/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/generating-and-using-GPG-keys/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#gpg" class="tag">&#35; gpg</a>
+          
+            <a href="/tags#keys" class="tag">&#35; keys</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
