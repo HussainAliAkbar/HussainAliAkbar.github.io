@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Signing and Verifying RPM Packages - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="Signing and Verifying RPM Packages" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="A comprehensive guide to signing and verifying RPM packages" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/signing-and-verifying-rpm-packages/" property="og:url">
+  
+  
+    <meta content="2018-04-11T16:44:00+05:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="rpm" property="article:tag">
+    
+    <meta content="signing" property="article:tag">
+    
+    <meta content="verification" property="article:tag">
+    
+    <meta content="packages" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Signing and Verifying RPM Packages">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/signing-and-verifying-rpm-packages/">
+  
+  
+    <meta name="twitter:description" content="A comprehensive guide to signing and verifying RPM packages">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg">
+  
+
+	<meta name="description" content="A comprehensive guide to signing and verifying RPM packages">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Signing and Verifying RPM Packages</h1>
+        <div class="page-date"><span>2018, Apr 11&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><a href="../digitally-signing-and-verification-of-debian-packages-with-dpkg-sig/">The previous post</a> talked about signing and verifying the signatures of Debian Packages. This is a continuation of that post.</p>
+
+<p>1 - The first thing that you need for signing an RPM Package, is of course, an RPM Package. Creating an RPM Package form scratch is not a part of this post, neither is the process of converting a .deb package to an .rpm package (thats what i did!). So, you can check out <a href="https://www.tecmint.com/convert-from-rpm-to-deb-and-deb-to-rpm-package-using-alien/">this excellent guide</a> in case you dont have one.</p>
+
+<p>2 - The second thing that you’ll need are the GPG Keys. I already have an entire post on <a href="../generating-and-using-GPG-keys/">generating and using GPG Keys</a> so you can refer to that in case you need any help. Once the GPG Keys are created, they can be imported like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo rpm --import RPM-GPG-KEY-PUBLIC
+</code></pre></div></div>
+<p>Its better to verify that the key has been imported successfully in the RPM database</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --&gt; %{summary}\n'
+</code></pre></div></div>
+
+<p>3 - Install <strong>rpm-sign</strong> if not already installed:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install rpm-sign
+</code></pre></div></div>
+
+<p>4 - Now that we have all the prerequisites, we can finally sign the package!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpm --define "_gpg_name Hussain Ali Akbar &lt;foo@bar.com&gt;" --addsign testpackage-1.1.1.11-1.x86_64.rpm
+</code></pre></div></div>
+<p>Here, you need to switch the name and email with the values that you defined while creating the GPG keys.</p>
+
+<p>5 - Verify that the package has been signed successfully:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpm --checksig testpackage-1.1.1.11-1.x86_64.rpm
+</code></pre></div></div>
+
+<p>A signed package would output something like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>testpackage-1.1.1.11-1.x86_64.rpm: rsa sha1 (md5) pgp md5 OK
+</code></pre></div></div>
+
+<p>whereas an unsigned package would output something like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>testpackage-1.1.1.11-1.x86_64.rpm: sha1 md5 OK
+</code></pre></div></div>
+
+<p>Another method to verify that the package signature exists or not is by doing this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpm -qpi testpackage-1.1.1.11-1.x86_64.rpm
+</code></pre></div></div>
+<p>A signed package would output a lot of items with the signature field as follows:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Signature   : RSA/SHA1, Fri 09 Mar 2018 02:40:26 PM PKT, Key ID 155550404e6a93b0
+</code></pre></div></div>
+
+<p>Whereas an unsigned package will output :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Signature   : (none)
+</code></pre></div></div>
+
+<p>Here, we are verifying the package signature on the same system that we signed it on. To verify the package’s signature on other systems, you’ll need to import the Public key of the GPG Key that was used to sign it and the signature should be verified successfully.</p>
+
+<p>And thats all the information that i have on package signing! Let me know if i missed something or did something incorrect. Any suggesstions and enhancements are appreciated! Cheers!</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Signing and Verifying RPM Packages&url=http://localhost:4000/signing-and-verifying-rpm-packages/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/signing-and-verifying-rpm-packages/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/signing-and-verifying-rpm-packages/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#rpm" class="tag">&#35; rpm</a>
+          
+            <a href="/tags#signing" class="tag">&#35; signing</a>
+          
+            <a href="/tags#verification" class="tag">&#35; verification</a>
+          
+            <a href="/tags#packages" class="tag">&#35; packages</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
