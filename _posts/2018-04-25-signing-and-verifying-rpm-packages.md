@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Signing and Verifying RPM Packages
-date: 2018-04-11 16:44:00 +0500
+date: 2018-04-25 10:44:00 +0500
 description: A comprehensive guide to signing and verifying RPM packages # Add post description (optional)
 img: # Add image post (optional)
 tags: [rpm, signing, verification, packages] # add tag

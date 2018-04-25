@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0 - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="A guide to add support for FIPS_mode and FIPS_mode_set in Python which does not exist by default" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/" property="og:url">
+  
+  
+    <meta content="2018-04-25T16:44:00+05:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="python" property="article:tag">
+    
+    <meta content="fips" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/">
+  
+  
+    <meta name="twitter:description" content="A guide to add support for FIPS_mode and FIPS_mode_set in Python which does not exist by default">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/hussain-ali-akbar.jpg">
+  
+
+	<meta name="description" content="A guide to add support for FIPS_mode and FIPS_mode_set in Python which does not exist by default">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0</h1>
+        <div class="page-date"><span>2018, Apr 25&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>While working on FIPS compliance for one of our projects, we came across a scenario where the project was in Python 3.6 that was freezed into an executable with cxfreeze. And our task was to package FIPS validated OpenSSL with the Python project.</p>
+
+<p>After some research, we found out that there was no native functionality in Python to enable the FIPS mode of the OpenSSL module packaged with the Python Application. So, our task became twofold:</p>
+
+<ol>
+  <li>Add support for FIPS_mode() and FIPS_mode_set() in Python</li>
+  <li>Set up a build environment that will package FIPS validated OpenSSL with the Python application</li>
+</ol>
+
+<h4 id="add-support-for-fips_mode-and-fips_mode_set-in-python-360">Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0</h4>
+
+<p>This post deals with the first part of the problem that we faced. After alot of research, we came across <a href="https://bugs.python.org/issue27592">this patch</a> which added support for FIPS_mode and FIPS_mode_set in Python 3.4. And this patch helped us in adding the same support in Python 3.6. The source code for Python 3.6.0 can be downloaded from <a href="https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz">here</a>.</p>
+
+<p>The code snippets below details the changes that you need to make in order to introduce support for the FIPS functions.</p>
+
+<h5 id="python-360libsslpy"><strong>Python-3.6.0/Lib/ssl.py</strong>:</h5>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     # LibreSSL does not provide RAND_egd
+     pass
+     
+<span class="gi">+try:
++    from _ssl import FIPS_mode, FIPS_mode_set
++except ImportError as e:
++    sys.stderr.write('error in importing\n')
++    sys.stderr.write(str(e))
+</span> 
+ from _ssl import HAS_SNI, HAS_ECDH, HAS_NPN, HAS_ALPN
+ from _ssl import _OPENSSL_API_VERSION
+</code></pre></div></div>
+<h5 id="python-360modulessetupdist"><strong>Python-3.6.0/Modules/Setup.dist</strong>:</h5>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #_csv _csv.c
+ 
+ # Socket module helper for socket(2)
+<span class="gd">-#_socket socketmodule.c
+</span><span class="gi">+_socket socketmodule.c
+</span> 
+ # Socket module helper for SSL support; you must comment out the other
+ # socket line above, and possibly edit the SSL variable:
+<span class="gd">-#SSL=/usr/local/ssl
+-#_ssl _ssl.c \
+-#	-DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+-#	-L$(SSL)/lib -lssl -lcrypto
+</span><span class="gi">+SSL=/usr/local/ssl
++_ssl _ssl.c \
++	-DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
++	-L$(SSL)/lib -lssl -lcrypto
+</span> 
+ # The crypt module is now disabled by default because it breaks builds
+ # on many systems (where -lcrypt is needed), e.g. Linux (I believe).
+</code></pre></div></div>
+
+<h5 id="python-360modules_sslc"><strong>Python-3.6.0/Modules/_ssl.c</strong>:</h5>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     return PyLong_FromLong(RAND_status());
+ }
+ 
+<span class="gi">+static PyObject *
++_ssl_FIPS_mode_impl(PyObject *module) {
++    return PyLong_FromLong(FIPS_mode());
++}
++
++static PyObject *
++_ssl_FIPS_mode_set_impl(PyObject *module, int n) {
++    if (FIPS_mode_set(n) == 0) {
++        _setSSLError(ERR_error_string(ERR_get_error(), NULL) , 0, __FILE__, __LINE__);
++        return NULL;
++    }
++    Py_RETURN_NONE;
++}
++
+</span> #ifndef OPENSSL_NO_EGD
+ /* LCOV_EXCL_START */
+ /*[clinic input]
+</code></pre></div></div>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+     _SSL_ENUM_CRLS_METHODDEF
+     _SSL_TXT2OBJ_METHODDEF
+     _SSL_NID2OBJ_METHODDEF
+<span class="gi">+    _SSL_FIPS_MODE_METHODDEF
++    _SSL_FIPS_MODE_SET_METHODDEF
+</span>     {NULL,                  NULL}            /* Sentinel */
+ };
+ 
+</code></pre></div></div>
+
+<h5 id="python-360modulesclinic_sslch"><strong>Python-3.6.0/Modules/clinic/_ssl.c.h</strong>:</h5>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+     return _ssl_RAND_status_impl(module);
+ }
+ 
+<span class="gi">+PyDoc_STRVAR(_ssl_FIPS_mode__doc__,
++"FIPS Mode");
++
++#define _SSL_FIPS_MODE_METHODDEF    \
++    {"FIPS_mode", (PyCFunction)_ssl_FIPS_mode, METH_NOARGS, _ssl_FIPS_mode__doc__},
++
++static PyObject *
++_ssl_FIPS_mode_impl(PyObject *module);
++
++static PyObject *
++_ssl_FIPS_mode(PyObject *module, PyObject *Py_UNUSED(ignored))
++{
++    return _ssl_FIPS_mode_impl(module);
++}
++
++PyDoc_STRVAR(_ssl_FIPS_mode_set_doc__,
++"FIPS Mode Set");
++
++#define _SSL_FIPS_MODE_SET_METHODDEF    \
++    {"FIPS_mode_set", (PyCFunction)_ssl_FIPS_mode_set, METH_O, _ssl_FIPS_mode_set_doc__},
++
++static PyObject *
++_ssl_FIPS_mode_set_impl(PyObject *module, int n);
++
++static PyObject *
++_ssl_FIPS_mode_set(PyObject *module, PyObject *arg)
++{
++    PyObject *return_value = NULL;
++    int n;
++
++    if (!PyArg_Parse(arg, "i:FIPS_mode_set", &amp;n)) {
++        goto exit;
++    }
++    return_value = _ssl_FIPS_mode_set_impl(module, n);
++
++exit:
++    return return_value;
++}
++
+</span> #if !defined(OPENSSL_NO_EGD)
+ 
+ PyDoc_STRVAR(_ssl_RAND_egd__doc__,
+
+</code></pre></div></div>
+
+<p>I also have a <a href="https://gist.github.com/HussainAliAkbar/37f996f1e009b0ee45b96c0252761d7f">gist on github</a> so if you run into any issues, feel free to post a comment there and I’ll be happy to help in any way that i can.</p>
+
+<p>In the next post, i’ll list down the steps to set up a build environment that can package a FIPS validated OpenSSL with the Python application. so Stay tuned!</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Add support for FIPS_mode() and FIPS_mode_set() in Python 3.6.0&url=http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#python" class="tag">&#35; python</a>
+          
+            <a href="/tags#fips" class="tag">&#35; fips</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

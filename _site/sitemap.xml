@@ -14,7 +14,11 @@
 </url>
 <url>
 <loc>http://localhost:4000/signing-and-verifying-rpm-packages/</loc>
-<lastmod>2018-04-11T16:44:00+05:00</lastmod>
+<lastmod>2018-04-25T10:44:00+05:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/</loc>
+<lastmod>2018-04-25T16:44:00+05:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
