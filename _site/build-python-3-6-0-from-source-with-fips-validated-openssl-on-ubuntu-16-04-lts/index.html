@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS" property="og:description">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" property="og:url">
+  
+  
+    <meta content="2018-04-27T10:44:00+05:00" property="article:published_time">
+    <meta content="http://hussainAliAkbar.github.io/about/" property="article:author">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="fips" property="article:tag">
+    
+    <meta content="python" property="article:tag">
+    
+    <meta content="openssl" property="article:tag">
+    
+    <meta content="ubuntu" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS">
+  
+  
+    <meta name="twitter:url" content="http://hussainAliAkbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/">
+  
+  
+    <meta name="twitter:description" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS">
+  
+  
+    <meta name="twitter:image:src" content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg">
+  
+
+  
+    <meta name="google-site-verification" content="394nLzsy0qFzVWjGqny0ALkU92yXUNXeE4Gj7zThZ8M">
+  
+
+	<meta name="description" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS | Hussain Ali Akbar</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS" />
+<meta name="author" content="Hussain Ali Akbar" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS" />
+<meta property="og:description" content="Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS" />
+<link rel="canonical" href="http://hussainaliakbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" />
+<meta property="og:url" content="http://hussainaliakbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" />
+<meta property="og:site_name" content="Hussain Ali Akbar" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-27T10:44:00+05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://hussainaliakbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/","headline":"Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS","dateModified":"2018-04-27T10:44:00+05:00","datePublished":"2018-04-27T10:44:00+05:00","author":{"@type":"Person","name":"Hussain Ali Akbar"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://hussainaliakbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/"},"description":"Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS</h1>
+        <div class="page-date"><span>2018, Apr 27&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>In the <a href="../add-support-for-fips-mode-and-fips-mode-set-in-python-3-6-0/">first part</a> of the post, we talked about modifying the source code of Python 3.6.0 to introduce two essential functions - namely FIPS_mode() and FIPS_mode_set() to toggle the FIPS mode of the SSL Module of Python.</p>
+
+<p>Today, We will be looking at building Python 3.6.0 from source with a FIPS validated OpenSSL. 
+Since the steps involve moving around and tinkering with alot of system dependent files, i prefer to do this inside a docker container so that my system does not get affected in case of any errors. 
+Feel free to do this on any Ubuntu 16.04 LTS system and ignore the steps that i provide for the Docker container setup.</p>
+
+<p>Setting up and using Docker is not a part of this post but there are alot of guides available <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">here</a>, <a href="https://medium.com/@Grigorkh/how-to-install-docker-on-ubuntu-16-04-3f509070d29c">here</a> and <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">here</a> that can help in setting up Docker on your local system.</p>
+
+<p>Once docker is set up on your system, create a working directory and copy the source code of the modified python into that directory. Create another directory called <em>“output”</em>. We will mount this directory with our docker container so that we are able to transfer files between our system and the docker container. In case you dont know about Docker volumes, <a href="https://docs.docker.com/storage/volumes/">read here</a>.</p>
+
+<p>Once this is done, run the following command to start a new container:</p>
+<pre><code class="language-ssh">docker run --name ubuntu-container -it -d -v ${PWD}/output:/output -v ${PWD}/Python-3.6.0:/Python-3.6.0 ubuntu
+</code></pre>
+<p>This will set up a new container and copy the modified Python 3.6.0 source code in it. You would also be able to see an <em>output</em> folder in the root directory. If you copy any files in that folder, they will be copied outside the docker container into your system’s output folder.</p>
+
+<p>Moving on, once the container is set up, you can enter it. Just replace the CONTAINER_ID with the id of your container.</p>
+<pre><code class="language-ssh">docker exec -it CONTAINER_ID bash
+</code></pre>
+
+<p>From here onwards, The steps should be the same for all.</p>
+
+<h5 id="1---install-the-dependencies">1 - Install the Dependencies</h5>
+<pre><code class="language-ssh">apt-get update &amp;&amp; apt-get install tcl-dev tk-dev bzip2 libbz2-dev build-essential \
+g++ make zlib1g-dev libffi-dev libc6 fakeroot libcups2-dev libkrb5-dev libyaml-dev \
+devscripts debhelper libqt4-dev curl git file cmake libsqlite3-dev wget
+</code></pre>
+
+<h5 id="2---check-whether-openssl-exists-in-the-system">2 - Check whether OpenSSL exists in the system</h5>
+<pre><code class="language-ssh">openssl version
+</code></pre>
+<p>This should output something like <em>OpenSSL 1.0.2g  1 Mar 2016</em> but the versions may vary depending on the system.</p>
+
+<h5 id="3---switch-to-the-home-directory">3 - Switch to the home directory</h5>
+<pre><code class="language-ssh">cd /home
+</code></pre>
+
+<h5 id="4---download-the-source-code-for-openssl-and-openssl-fips-module">4 - Download the source code for OpenSSL and OpenSSL FIPS Module</h5>
+<pre><code class="language-ssh">wget https://www.openssl.org/source/old/fips/openssl-fips-2.0.12.tar.gz &amp;&amp; \
+wget https://www.openssl.org/source/old/1.0.2/openssl-1.0.2h.tar.gz
+</code></pre>
+
+<h5 id="5---extract-the-tar-files">5 - Extract the tar files</h5>
+<pre><code class="language-ssh">tar -xvf openssl-1.0.2h.tar.gz &amp;&amp; tar -xvf openssl-fips-2.0.12.tar.gz
+</code></pre>
+
+<h5 id="6---build-openssl-fips-module-and-openssl">6 - Build OpenSSL Fips Module and OpenSSL</h5>
+<pre><code class="language-ssh">cd openssl-fips-2.0.12 &amp;&amp; ./config &amp;&amp; make &amp;&amp; make install &amp;&amp; cd .. &amp;&amp; \
+cd openssl-1.0.2h &amp;&amp; ./config shared fips &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<h5 id="7---verify-that-fips-validated-openssl-has-been-installed-properly">7 - Verify that FIPS validated OpenSSL has been installed properly</h5>
+<pre><code class="language-ssh">/usr/local/ssl/bin/./openssl version
+</code></pre>
+
+<h5 id="8---replace-system-openssl-with-the-fips-validated-openssl">8 - Replace system OpenSSL with the FIPS validated OpenSSL</h5>
+<pre><code class="language-ssh">ln -s -f /usr/local/ssl/bin/openssl /usr/bin/openssl
+</code></pre>
+
+<h5 id="9---verify-that-openssl-has-been-replaced-successfully-it-should-now-show-fips">9 - Verify that OpenSSL has been replaced successfully. It should now show “FIPS”</h5>
+<pre><code class="language-ssh">openssl version
+OpenSSL 1.0.2h-fips  3 May 2016
+</code></pre>
+
+<h5 id="10---move-the-systems-libcrypto-and-libssl-shared-objects">10 - Move the System’s libcrypto and libssl shared objects</h5>
+<pre><code class="language-ssh">mv /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/old_libcrypto.so.1.0.0 \
+&amp;&amp; mv /lib/x86_64-linux-gnu/libssl.so.1.0.0 /lib/x86_64-linux-gnu/old_libssl.so.1.0.0
+</code></pre>
+
+<h5 id="11---copy-new-fips-enabled-libcrypto-and-libssl-shared-objects">11 - Copy new fips-enabled libcrypto and libssl shared objects</h5>
+<pre><code class="language-ssh">cp /usr/local/ssl/lib/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/ &amp;&amp; \
+cp /usr/local/ssl/lib/libssl.so.1.0.0 /lib/x86_64-linux-gnu/
+</code></pre>
+
+<h5 id="12---switch-to-the-python-360-source-code-directory">12 - Switch to the Python 3.6.0 source code directory</h5>
+<pre><code class="language-ssh">cd /Python-3.6.0/
+</code></pre>
+
+<h5 id="13---build-python-360">13 - Build Python 3.6.0</h5>
+<pre><code class="language-ssh">./configure  --enable-shared --prefix=/usr/local/python3.6 &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<h5 id="14---copy-libpython36mso10-to-system-directories">14 - Copy libpython3.6m.so.1.0 to system directories</h5>
+<pre><code class="language-ssh">cp /usr/local/python3.6/lib/libpython3.6m.so.1.0 /usr/lib/x86_64-linux-gnu/ \
+&amp;&amp; cp /usr/local/python3.6/lib/libpython3.6m.so.1.0 /lib/x86_64-linux-gnu/
+</code></pre>
+
+<h5 id="15---run-python-and-confirm-that-the-fips-functions-are-working-properly">15 - Run Python and confirm that the FIPS Functions are working properly</h5>
+<pre><code class="language-ssh">root@cdc0d80758bd:/home/Python-3.6.0# /usr/local/python3.6/bin/./python3.6
+Python 3.6.0 (default, Mar 30 2018, 09:52:46) 
+[GCC 5.4.0 20160609] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+&gt;&gt;&gt; import ssl
+successful import
+
+&gt;&gt;&gt; ssl.OPENSSL_VERSION
+'OpenSSL 1.0.2h-fips  3 May 2016'
+
+&gt;&gt;&gt; ssl.FIPS_mode()
+0
+
+&gt;&gt;&gt; ssl.FIPS_mode_set(1)
+
+&gt;&gt;&gt; ssl.FIPS_mode()  
+1
+&gt;&gt;&gt; 
+</code></pre>
+<p>When you print the OpenSSL Version with ssl.OPENSSL_VERSION, you should see “OpenSSL 1.0.2h-fips 3 May 2016”.</p>
+
+<p>When you initially check the FIPS mode with ssl.FIPS_mode(), you should see “0” which indicates that the FIPS mode has not been toggled.</p>
+
+<p>When you execute ssl.FIPS_mode_set(1), you do not see any output which is the expected behavior. 
+If any error is thrown such as “FIPS mode not supported” then that means that the FIPS mode has not been toggled properly.</p>
+
+<p>Now, when you again check the FIPS mode with ssl.FIPS_mode(), you should see “1” which indicates that FIPS mode has now been enabled.</p>
+
+<p>If you have reached this point without any issues, then you have compiled Python successfully with a FIPS validated OpenSSL. And you can use this to run your python applications in a FIPS enabled enviroment.</p>
+
+<p><strong>However</strong>, we can take this a bit further and use <a href="https://anthony-tuininga.github.io/cx_Freeze/">cxFreeze</a> to create Python applications that can run on any ubuntu systems in FIPS mode regardless of whether a FIPS validated OpenSSL exists on that system or not. Just follow the steps below.</p>
+
+<h5 id="16---install-cx-freeze">16 - Install cx-Freeze</h5>
+<pre><code class="language-ssh">/usr/local/python3.6/bin/./pip3.6 install cx-Freeze==5.0.1
+</code></pre>
+
+<h5 id="17---export-system-flags">17 - Export System flags</h5>
+<pre><code class="language-ssh">  export LDFLAGS="-L/usr/local/ssl/lib/"
+  export SL_INSTALL_PATH=/usr/local/ssl
+  export OPENSSL_FIPS=1
+  export LD_LIBRARY_PATH="/usr/local/ssl/lib/"
+  export CPPFLAGS="-I/usr/local/ssl/include/ -I/usr/local/ssl/include/openssl/"
+</code></pre>
+
+<h5 id="18---install-vim-if-not-installed-this-will-be-used-to-create-a-test-python-script">18 - Install vim if not installed. This will be used to create a test python script.</h5>
+<pre><code class="language-ssh">apt-get install vim
+</code></pre>
+
+<h5 id="19---create-a-test-script">19 - Create a test script</h5>
+<pre><code class="language-ssh">touch /home/testCxFreeze.py &amp;&amp; vim /home//testCxFreeze.py
+</code></pre>
+
+<p>Add the following contents to the file:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">ssl</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"OpenSSL Version: "</span><span class="p">,</span> <span class="n">ssl</span><span class="o">.</span><span class="n">OPENSSL_VERSION</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Initial FIPS Mode: "</span><span class="p">,</span> <span class="n">ssl</span><span class="o">.</span><span class="n">FIPS_mode</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Toggle FIPS Mode: "</span><span class="p">,</span> <span class="n">ssl</span><span class="o">.</span><span class="n">FIPS_mode_set</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"FIPS Mode after toggle: "</span><span class="p">,</span> <span class="n">ssl</span><span class="o">.</span><span class="n">FIPS_mode</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h5 id="20---freeze-the-script">20 - Freeze the script</h5>
+<pre><code class="language-ssh">/usr/local/python3.6/bin/./cxfreeze /home/testCxFreeze.py --target-dir /home/testCxFreeze
+</code></pre>
+
+<h5 id="21---test-the-freezed-script">21 - Test the freezed script</h5>
+<p>When you run the script, you should see the following output.</p>
+<pre><code class="language-ssh">root@f47cb09d42ab:/home/testCxFreeze# /home/testCxFreeze/./testCxFreeze
+OpenSSL Version:  OpenSSL 1.0.2h-fips  3 May 2016
+Initial FIPS Mode:  0
+Toggle FIPS Mode:  None
+FIPS Mode after toggle:  1
+</code></pre>
+
+<p>Of course, since we’re still in the environment where we built Python. So to have a final test, extract this script out of the docker container (or outside the system in case you are not using docker) so that we can run it on another system.</p>
+
+<h5 id="22----extract-the-test-script-folder-from-docker">22  - Extract the test script folder from Docker</h5>
+<pre><code class="language-ssh">scp -r testCxFreeze /output/
+</code></pre>
+<p>If you mounted the output folder correctly like i mentioned earlier in the post, the <strong>testCxFreeze</strong> folder should now appear in your system’s output folder.</p>
+
+<h5 id="23---run-the-testcxfreeze-executable">23 - Run the testCxFreeze executable</h5>
+<pre><code class="language-ssh">hussain@LTP-HUSSAIN ~/Desktop/projects/personal/pythonFips/output/testCxFreeze $ ./testCxFreeze 
+OpenSSL Version:  OpenSSL 1.0.2h-fips  3 May 2016
+Initial FIPS Mode:  0
+Toggle FIPS Mode:  None
+FIPS Mode after toggle:  1
+</code></pre>
+<p>And is how we can export a Python application running in FIPS mode to other systems.</p>
+
+<p>I hope this was helpful because it certainly made my life easier. If you run into any issues during any of the steps above, please feel free to contact me. Cheers!</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Build Python 3.6.0 from source with FIPS validated OpenSSL on Ubuntu 16.04 LTS&url=http://hussainAliAkbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://hussainAliAkbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://hussainAliAkbar.github.io/build-python-3-6-0-from-source-with-fips-validated-openssl-on-ubuntu-16-04-lts/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#fips" class="tag">&#35; fips</a>
+          
+            <a href="/tags#python" class="tag">&#35; python</a>
+          
+            <a href="/tags#openssl" class="tag">&#35; openssl</a>
+          
+            <a href="/tags#ubuntu" class="tag">&#35; ubuntu</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
