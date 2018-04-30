@@ -21,7 +21,7 @@ google_verify: 394nLzsy0qFzVWjGqny0ALkU92yXUNXeE4Gj7zThZ8M
 discus-identifier: # add your discus identifier
 
 # Tracker
-analytics: # Google Analytics
+analytics: UA-118374084-1 # Google Analytics
 
 # Build Settings
 markdown: kramdown
