@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark" property="og:description">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" property="og:url">
+  
+  
+    <meta content="2018-05-17T10:40:00+05:00" property="article:published_time">
+    <meta content="http://hussainAliAkbar.github.io/about/" property="article:author">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="python" property="article:tag">
+    
+    <meta content="requests" property="article:tag">
+    
+    <meta content="tls" property="article:tag">
+    
+    <meta content="ciphers" property="article:tag">
+    
+    <meta content="wireshark" property="article:tag">
+    
+    <meta content="security" property="article:tag">
+    
+    <meta content="fips" property="article:tag">
+    
+    <meta content="cc" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark">
+  
+  
+    <meta name="twitter:url" content="http://hussainAliAkbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/">
+  
+  
+    <meta name="twitter:description" content="Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark">
+  
+  
+    <meta name="twitter:image:src" content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg">
+  
+
+  
+    <meta name="google-site-verification" content="394nLzsy0qFzVWjGqny0ALkU92yXUNXeE4Gj7zThZ8M">
+  
+
+	<meta name="description" content="Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark | Hussain Ali Akbar</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark" />
+<meta name="author" content="Hussain Ali Akbar" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark" />
+<meta property="og:description" content="Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark" />
+<link rel="canonical" href="http://hussainaliakbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" />
+<meta property="og:url" content="http://hussainaliakbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" />
+<meta property="og:site_name" content="Hussain Ali Akbar" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-17T10:40:00+05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://hussainaliakbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/","headline":"Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark","dateModified":"2018-05-17T10:40:00+05:00","datePublished":"2018-05-17T10:40:00+05:00","author":{"@type":"Person","name":"Hussain Ali Akbar"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://hussainaliakbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/"},"description":"Restricting TLS Version and Cipher Suites in Python’s Requests and testing with Wireshark","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark</h1>
+        <div class="page-date"><span>2018, May 17&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>Python’s <a href="http://docs.python-requests.org/en/master/#">Requests</a> is a very powerful Library that can be used HTTP requests. It’s very easy to use and has tons of great features. While working on CC Compliance, I needed to restrict the TLS Version to 1.2 as well as restrict the cipher suites in the Client Hello Packet. And I needed to do this through the request’s library.</p>
+
+<p>I found alot of solutions online but most of them contained separate  implementations for restricting the TLS Version and Restricting the Cipher Suites. I could not find a single solution which contained both the functionalities and so i had to come up with it myself.</p>
+
+<p>Before you can get started with the code, make sure that you have the requests library installed:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install requests
+</code></pre></div></div>
+
+<p>The following code (i’ll explain the bits and pieces later) achieves the required functionality. Scroll down further after the code for explanation and tests:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">ssl</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span>
+<span class="kn">from</span> <span class="nn">requests.packages.urllib3.poolmanager</span> <span class="kn">import</span> <span class="n">PoolManager</span>
+<span class="kn">from</span> <span class="nn">requests.packages.urllib3.util</span> <span class="kn">import</span> <span class="n">ssl_</span>
+
+<span class="n">CIPHERS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:</span><span class="err">
+</span><span class="s">    ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:AES256-SHA'</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TlsAdapter</span><span class="p">(</span><span class="n">HTTPAdapter</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_options</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ssl_options</span> <span class="o">=</span> <span class="n">ssl_options</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TlsAdapter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init_poolmanager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">pool_args</span><span class="p">,</span> <span class="o">**</span><span class="n">pool_kwargs</span><span class="p">):</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl_</span><span class="o">.</span><span class="n">create_urllib3_context</span><span class="p">(</span><span class="n">ciphers</span><span class="o">=</span><span class="n">CIPHERS</span><span class="p">,</span> <span class="n">cert_reqs</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">CERT_REQUIRED</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poolmanager</span> <span class="o">=</span> <span class="n">PoolManager</span><span class="p">(</span><span class="o">*</span><span class="n">pool_args</span><span class="p">,</span>
+                                       <span class="n">ssl_context</span><span class="o">=</span><span class="n">ctx</span><span class="p">,</span>
+                                       <span class="o">**</span><span class="n">pool_kwargs</span><span class="p">)</span>
+
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+<span class="n">adapter</span> <span class="o">=</span> <span class="n">TlsAdapter</span><span class="p">(</span><span class="n">ssl</span><span class="o">.</span><span class="n">OP_NO_TLSv1</span> <span class="o">|</span> <span class="n">ssl</span><span class="o">.</span><span class="n">OP_NO_TLSv1_1</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s">"https://"</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'https://google.com'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Following are the important points to note:</strong></p>
+
+<ol>
+  <li>
+    <p>You can control the Cipher List through the <strong>CIPHERS</strong> variable. That variable takes a string parameter of all the cipher suites that you need to allow separated with a “:” . The list of available cipher suites can be found by running “openssl ciphers” in the terminal.</p>
+  </li>
+  <li>
+    <p>You can control which TLS versions to restrict using the parameters of the <strong>TlsAdapter</strong>. It can take the following arguments:</p>
+
+    <ul>
+      <li>ssl.OP_NO_TLSv1 (For restricting TLS V1)</li>
+      <li>ssl.OP_NO_TLSv1_1 (For restricting TLS V1.1)</li>
+      <li>ssl.OP_NO_TLSv1_2 (For restricting TLS V1.2)</li>
+    </ul>
+  </li>
+  <li>
+    <p>You can control the HTTP Method and URL through the parameters of <strong>session.request</strong>. Here i have used the GET Method. However, if you are using any other method that requires you to send a request body such as POST or PUT then that can also be added here as an argument.</p>
+  </li>
+</ol>
+
+<p>Now, in order to test this whether we have indeed managed to restrict the Cipher Suites and the TLS Version, we will need wireshark which is a very popular packet analyzer tool. If you dont already have that, install it by running the following command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install wireshark
+</code></pre></div></div>
+
+<p>Once Wireshark is installed, run it.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo wireshark
+</code></pre></div></div>
+
+<p><img src="/assets/img/WiresharkLanding.png" alt="Wireshark Landing Page" /></p>
+
+<p>On this screen, you should a list of available network connections of your current device. For example, in the image above you can see enp0s25, wlp3s0 etc. These networks coorespond to your ethernet connection, wireless connection etc. I chose enp0s25 because that is the name of my ethernet connection. Choose the network connection depending on which connection you’re currently on.</p>
+
+<p>Once you select the network connection, You should arrive at this screen which lists down all the packets sent and received from your machine.</p>
+
+<p><img src="/assets/img/WiresharkPackets.png" alt="Wireshark Packets Page" /></p>
+
+<p>However, you should see alot of packets here that are of no use to us. So we need to filter down the traffic captured by wireshark using the ip address of the server that we are going to hit. For the purpose of this tutorial, I used the IP Address of Google.</p>
+
+<p>Copy the following line in the Display Filter text field and replace the ip with with the ip of the server that you are going to test it on:
+<code class="highlighter-rouge">ip.addr == 216.58.213.227</code></p>
+
+<p>Now run the Python script:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python [filename].py
+</code></pre></div></div>
+<p>The terminal should output a simple <code class="highlighter-rouge">&lt;Response [200]&gt;</code> which means that the request was received successfully.</p>
+
+<p>However, there is a chance that you may not have the traffic captured in wireshark due to the fact that Google uses alot of IP addresses and the IP Address that we’re using for filtering our packet data might not be the IP on which our request was sent. In order to fix this, we need to add an entry in the hosts file.</p>
+
+<p>open the hosts file in any editor with Sudo privileges:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim /etc/hosts
+</code></pre></div></div>
+<p>and add the following line: <code class="highlighter-rouge">216.58.213.227  google.com</code>. This way, all the requests for “google.com” will be sent to the <strong>216.58.213.227</strong> ip address.</p>
+
+<p>Once this is done, rerun the Python script and you should now see the packet captured in Wireshark.</p>
+
+<p><img src="/assets/img/PacketCaptured.png" alt="Captured Packet" /></p>
+
+<p>Here, in the client hello packet, we can see that the Protocol is <strong>TLSv1.2</strong>. To check which cipher suites were sent by the python script, Navigate to: <strong>Secure Sockets Layer -&gt; TLSv1.2 Record Layer -&gt; Handshake Protocol -&gt; Cipher Suites</strong></p>
+
+<p><img src="/assets/img/CipherSuites.png" alt="Cipher Suites" /></p>
+
+<p>Here, we can see that only those cipher cuites are sent to the server for TLS Negotiation that we allowed in our Python Script.</p>
+
+<p>To further test this out, lets modify the TLS Version and the Restricted Cipher Suites. 
+Change the CIPHER Variable to just this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CIPHERS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">'AES256-SHA'</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>And change the TLS Version arguments to restrict TLSv1 and TLSv1.2 instead of TLSv1.1:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adapter = TlsAdapter(ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_2)
+</code></pre></div></div>
+
+<p>Execute the Python script again and view the results in Wireshark.</p>
+
+<p><img src="/assets/img/modifiedTLSVersion.png" alt="Modified TLS Version" /></p>
+
+<p>We can now see that the Protocol being used to communicate is TLSv1.1. Also, only one cipher suite is sent by the client for TLS negotiation and thats the one that we have specified.</p>
+
+<p>I hope that this was helpful! Please feel free to contact me in case you run into any issues. Cheers!</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Restricting TLS Version and Cipher Suites in Python's Requests and testing with Wireshark&url=http://hussainAliAkbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://hussainAliAkbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://hussainAliAkbar.github.io/restricting-tls-version-and-cipher-suites-in-python-requests-and-testing-with-wireshark/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#python" class="tag">&#35; python</a>
+          
+            <a href="/tags#requests" class="tag">&#35; requests</a>
+          
+            <a href="/tags#tls" class="tag">&#35; tls</a>
+          
+            <a href="/tags#ciphers" class="tag">&#35; ciphers</a>
+          
+            <a href="/tags#wireshark" class="tag">&#35; wireshark</a>
+          
+            <a href="/tags#security" class="tag">&#35; security</a>
+          
+            <a href="/tags#fips" class="tag">&#35; fips</a>
+          
+            <a href="/tags#cc" class="tag">&#35; cc</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118374084-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+  
+</body>
+</html>
