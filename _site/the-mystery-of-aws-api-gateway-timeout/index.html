@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>The Mystery of Amazon's API Gateway Timeout? - Hussain Ali Akbar</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hussain Ali Akbar" property="og:site_name">
+  
+    <meta content="The Mystery of Amazon's API Gateway Timeout?" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="The Mystery of Amazon's API Gateway Timeout" property="og:description">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/the-mystery-of-aws-api-gateway-timeout/" property="og:url">
+  
+  
+    <meta content="2018-06-07T09:24:00+05:00" property="article:published_time">
+    <meta content="http://hussainAliAkbar.github.io/about/" property="article:author">
+  
+  
+    <meta content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="aws" property="article:tag">
+    
+    <meta content="amazon" property="article:tag">
+    
+    <meta content="lambda" property="article:tag">
+    
+    <meta content="api-gateway" property="article:tag">
+    
+    <meta content="http" property="article:tag">
+    
+    <meta content="serverless" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="The Mystery of Amazon's API Gateway Timeout?">
+  
+  
+    <meta name="twitter:url" content="http://hussainAliAkbar.github.io/the-mystery-of-aws-api-gateway-timeout/">
+  
+  
+    <meta name="twitter:description" content="The Mystery of Amazon's API Gateway Timeout">
+  
+  
+    <meta name="twitter:image:src" content="http://hussainAliAkbar.github.io/assets/img/hussain-ali-akbar.jpg">
+  
+
+  
+    <meta name="google-site-verification" content="394nLzsy0qFzVWjGqny0ALkU92yXUNXeE4Gj7zThZ8M">
+  
+
+	<meta name="description" content="The Mystery of Amazon's API Gateway Timeout">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>The Mystery of Amazon’s API Gateway Timeout? | Hussain Ali Akbar</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="The Mystery of Amazon’s API Gateway Timeout?" />
+<meta name="author" content="Hussain Ali Akbar" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Mystery of Amazon’s API Gateway Timeout" />
+<meta property="og:description" content="The Mystery of Amazon’s API Gateway Timeout" />
+<link rel="canonical" href="http://hussainaliakbar.github.io/the-mystery-of-aws-api-gateway-timeout/" />
+<meta property="og:url" content="http://hussainaliakbar.github.io/the-mystery-of-aws-api-gateway-timeout/" />
+<meta property="og:site_name" content="Hussain Ali Akbar" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-06-07T09:24:00+05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://hussainaliakbar.github.io/the-mystery-of-aws-api-gateway-timeout/","headline":"The Mystery of Amazon’s API Gateway Timeout?","dateModified":"2018-06-07T09:24:00+05:00","datePublished":"2018-06-07T09:24:00+05:00","author":{"@type":"Person","name":"Hussain Ali Akbar"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://hussainaliakbar.github.io/the-mystery-of-aws-api-gateway-timeout/"},"description":"The Mystery of Amazon’s API Gateway Timeout","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/hussain-ali-akbar.jpg" alt="Hussain Ali Akbar"></a>
+      </div>
+      <div class="author-name">Hussain Ali Akbar</div>
+      <p>I am a Software Developer at 10 Pearls focusing on server-side development. I am always keen on learning new items that help me grow professionally as a software Developer. I have this blog set up so that i can share some of the amazing stuff that i learn and which has little to no content on the internet.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+<!--         
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+         -->
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/github.com/hussainAliAkbar" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:hussain94aa@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Hussain Ali Akbar</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">The Mystery of Amazon's API Gateway Timeout?</h1>
+        <div class="page-date"><span>2018, Jun 07&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>Did you know that Amazon’s API Gateway Service has a <strong>upper limit of 30 seconds</strong> that cannot be bypassed or increased in any way? I sure didn’t! And the way that I and my team found out about it deserves a blog post! <strong>(hint: There was a bug in the code!)</strong> Lets provide a bit of a background first before going into the actual details.</p>
+
+<p><br /></p>
+
+<p>So, my team had a AWS lambda function over which we had configured a API Gateway. All was good and the respose time was under 5 seconds. And then suddenly, we started getting <code class="highlighter-rouge">Endpoint Request Timed out</code> in response to the API invocation. At first we thought that maybe the Lambda function was timing out so we increased its limit all the way to 300 seconds. Even then, the request was timing out at 29 seconds. We found this a bit odd because the two time limits were vastly different.</p>
+
+<p><br /></p>
+
+<p>After a bit of head scratching and of course, some Googling, we found out that the API Gateway itself has a timeout limit of 30 seconds and if the lambda does not return within that time, the API Gateway will time out. It does not matter if the Lambda function has a timeout limit of 5 minutes. This is a bit intriguing because this limit on the API Gateway essentially renders the 5 minute timeout limit of the Lambda Function invalid. Interestingly, this limit is mentioned on the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html">API Gateway Developer guide</a> as well. And it was a mistake on our part not to go through the limits of a service first before consuming it.</p>
+
+<p><br /></p>
+
+<p>Anyways, this got us thinking as to what was causing the Lambda function to take so much time because there really wasn’t alot of processing involved. And this finally led my team to the bug that was causing this entire issue! <strong>(I will, for obvious reasons, not go into the details of the bug).</strong></p>
+
+<p><br /></p>
+
+<p>My team was able to resolve the API Gateway timeout issue without much hassle <strong>(we fixed the bug!)</strong>. However, if your Lambda function really is taking more than 30 seconds to compute, Here’s what you can do:</p>
+
+<h4 id="1-the-first-option-is-that-you-can-try-and-making-your-function-as-efficient-as-possible-by-running-as-many-things-asynchronously-as-you-can-if-there-is-something-that-can-be-executed-in-the-parallel-extract-it-create-a-new-lambda-function-and-invoke-that-function-directly-from-the-first-lambda-function-aws-already-has-a-blog-post-here-that-lets-us-know-how-it-can-be-done-in-java">1. The first option is that you can try and making your function as efficient as possible by running as many things asynchronously as you can. If there is something that can be executed in the parallel, extract it, create a new Lambda function and invoke that function directly from the first lambda function. AWS already has a blog post <a href="https://aws.amazon.com/blogs/developer/invoking-aws-lambda-functions-from-java/">here</a> that lets us know how it can be done in Java.</h4>
+
+<h4 id="2-the-next-option-is-particularly-nifty-that-i-found-here-while-researching-on-this-issue-quite-simply-if-the-api-gateway-times-out-it-does-not-mean-that-the-lambda-function-times-out-as-well-the-lambda-function-will-complete-its-execution---it-just-wont-be-able-to-send-a-response-so-you-can-setup-a-callback-url-at-the-end-of-the-function-that-will-post-your-data-this-can-easily-be-done-by-creating-a-new-api-gatway-that-will-send-the-data-to-your-database-or-wherever-it-is-that-you-want-the-data-at">2. The next option is particularly nifty that i found <a href="https://sielert.com/api-gateway-gotcha-with-aws-lambda/">here</a> while researching on this issue. Quite simply, if the API Gateway times out, it does not mean that the Lambda function times out as well. The lambda function will complete its execution - it just wont be able to send a response. So, you can setup a callback URL at the end of the function that will post your data. This can easily be done by creating a new API Gatway that will send the data to your database or wherever it is that you want the data at.</h4>
+
+<h4 id="3-the-final-option-is-to-adopt-a-pattern-for-executing-long-requests-in-aws-mentioned-here-not-only-is-the-pattern-fairly-simple-to-understand-but-it-also-very-easy-to-implement-as-well-in-summary-of-the-pattern-the-request-needs-to-be-broken-down-into-three-parts-a-initial-requestrespons-b-background-processing-c-polling">3. The final option is to adopt a pattern for executing long requests in AWS mentioned <a href="http://www.99serverless.com/index.php/2017/11/24/serverless-long-running-http-requests/">here</a>. Not only is the pattern fairly simple to understand, but it also very easy to implement as well. In summary of the pattern, the request needs to be broken down into three parts: <em>a. initial request/respons; b. background processing; c. polling</em></h4>
+
+<p>Do let me know if there are other simple ways to bypass the API Gateway’s time limit that i have missed. I hope this helps others! Cheers!</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=The Mystery of Amazon's API Gateway Timeout?&url=http://hussainAliAkbar.github.io/the-mystery-of-aws-api-gateway-timeout/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://hussainAliAkbar.github.io/the-mystery-of-aws-api-gateway-timeout/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://hussainAliAkbar.github.io/the-mystery-of-aws-api-gateway-timeout/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#aws" class="tag">&#35; aws</a>
+          
+            <a href="/tags#amazon" class="tag">&#35; amazon</a>
+          
+            <a href="/tags#lambda" class="tag">&#35; lambda</a>
+          
+            <a href="/tags#api-gateway" class="tag">&#35; api-gateway</a>
+          
+            <a href="/tags#http" class="tag">&#35; http</a>
+          
+            <a href="/tags#serverless" class="tag">&#35; serverless</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118374084-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+  
+</body>
+</html>
