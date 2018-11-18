@@ -29,5 +29,6 @@ JEKYLL_ENV=production bundle exec jekyll build
 ```
 
 [more info](https://stackoverflow.com/questions/41511696/jekyll-build-is-putting-localhost-links-in-site-production-files)
+<br />
 *Jekyll Theme Credits:*
 *https://github.com/artemsheludko/flexible-jekyll*
