@@ -19,10 +19,14 @@ I am a Software Developer at 10 Pearls focusing on server-side development. I am
 
 
 *Running Jekyll Server for local development:*
-*jekyll serve*
+```
+jekyll serve
+```
 
 *Building jekyll build for production with analytics:*
-*JEKYLL_ENV=production bundle exec jekyll build*
+```
+JEKYLL_ENV=production bundle exec jekyll build
+```
 
 [more info](https://stackoverflow.com/questions/41511696/jekyll-build-is-putting-localhost-links-in-site-production-files)
 *Jekyll Theme Credits:*
